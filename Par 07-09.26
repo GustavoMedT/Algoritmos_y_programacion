@@ -1,0 +1,77 @@
+//Gustavo Medina Torres
+//Para cada día, se ingresará un par de valores correspondientes a estas temperaturas. Sin embargo, una temperatura con valor de 9 grados se considera un dato erróneo.
+El ingreso de datos finalizará cuando se introduzca el par de temperaturas 0, 0. Este par únicamente indica el fin del registro 
+Algoritmo Estacion_Climatica
+	Definir tempMax, tempMin Como Real
+	Definir sumaMax, sumaMin, promMax, promMin, porcentaje Como Real
+	Definir dias, errores, totalTemp, contMax, contMin Como Entero
+	
+	dias <- 0
+	errores <- 0
+	sumaMax <- 0
+	sumaMin <- 0
+	contMax <- 0
+	contMin <- 0
+	
+	Escribir "=== REGISTRO DE TEMPERATURAS ==="
+	Escribir "Ingrese 0 y 0 para finalizar el registro."
+	Escribir ""
+	
+	Escribir "Temperatura maxima del dia: "
+	Leer tempMax
+	Escribir "Temperatura minima del dia: "
+	Leer tempMin
+	
+	Mientras No (tempMax = 0 Y tempMin = 0) Hacer
+		dias <- dias + 1
+		
+		Si tempMax = 9 Entonces
+			errores <- errores + 1
+		SiNo
+			sumaMax <- sumaMax + tempMax
+			contMax <- contMax + 1
+		FinSi
+		
+		Si tempMin = 9 Entonces
+			errores <- errores + 1
+		SiNo
+			sumaMin <- sumaMin + tempMin
+			contMin <- contMin + 1
+		FinSi
+		
+		Escribir ""
+		Escribir "Temperatura maxima del dia: "
+		Leer tempMax
+		Escribir "Temperatura minima del dia: "
+		Leer tempMin
+	FinMientras
+	
+	Escribir ""
+	Escribir "=== RESULTADOS ==="
+	
+	Si dias > 0 Entonces
+		totalTemp <- dias * 2
+		
+		Si contMax > 0 Entonces
+			promMax <- sumaMax / contMax
+		SiNo
+			promMax <- 0
+		FinSi
+		
+		Si contMin > 0 Entonces
+			promMin <- sumaMin / contMin
+		SiNo
+			promMin <- 0
+		FinSi
+		
+		porcentaje <- (errores / totalTemp) * 100
+		
+		Escribir "Dias registrados: ", dias
+		Escribir "Temperatura maxima promedio: ", promMax
+		Escribir "Temperatura minima promedio: ", promMin
+		Escribir "Temperaturas erroneas: ", errores
+		Escribir "Porcentaje de error: ", porcentaje, " %"
+	SiNo
+		Escribir "No se registro ningun dia."
+	FinSi
+FinAlgoritmo
